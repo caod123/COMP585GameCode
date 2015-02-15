@@ -18,7 +18,7 @@ using System.Collections;
 [System.Serializable]
 public class Boundary 
 {
-	public float xMin, xMax, yMin, yMax; //Screen Boundary dimentions hello unity
+	public float xMin, xMax, yMin, yMax; //Screen Boundary dimentions checking 
 }
 
 public class Player_Script : MonoBehaviour 
