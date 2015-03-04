@@ -33,7 +33,7 @@ public class EnemyGreen_Script : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		rigidbody2D.velocity = -1 * transform.up * speed;	//Enemy Ship Movement
+		GetComponent<Rigidbody2D>().velocity = -1 * transform.up * speed;	//Enemy Ship Movement
 	}
 
 	// Update is called once per frame
@@ -44,7 +44,7 @@ public class EnemyGreen_Script : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate; 									//Increment nextFire time with the current system time + fireRate
 			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 		//Instantiate fire shot 
-			audio.Play (); 														//Play Fire sound
+			GetComponent<AudioSource>().Play (); 														//Play Fire sound
 		}
 	}
 

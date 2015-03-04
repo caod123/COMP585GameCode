@@ -20,6 +20,6 @@ public class EnemyShot_Script : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		rigidbody2D.velocity = -1 * transform.up * speed; //Give Velocity to the Enemy ship shot
+		GetComponent<Rigidbody2D>().velocity = -1 * transform.up * speed; //Give Velocity to the Enemy ship shot
 	}
 }

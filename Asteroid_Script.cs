@@ -27,8 +27,8 @@ public class Asteroid_Script : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		rigidbody2D.angularVelocity = Random.Range(minTumble, maxTumble); 		//Angular movement based on random speed values
-		rigidbody2D.velocity = -1 * transform.up * speed; 						//Negative Velocity to move down towards the player ship
+		GetComponent<Rigidbody2D>().angularVelocity = Random.Range(minTumble, maxTumble); 		//Angular movement based on random speed values
+		GetComponent<Rigidbody2D>().velocity = -1 * transform.up * speed; 						//Negative Velocity to move down towards the player ship
 	}
 
 	//Called when the Trigger entered

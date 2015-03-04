@@ -17,6 +17,6 @@ public class explosions_script : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		audio.Play(); //Play Explosion Sound
+		GetComponent<AudioSource>().Play(); //Play Explosion Sound
 	}
 }

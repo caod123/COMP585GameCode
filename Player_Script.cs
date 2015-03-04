@@ -43,7 +43,7 @@ public class Player_Script : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 
-			audio.Play (); 													//Play Fire sound
+			GetComponent<AudioSource>().Play (); 													//Play Fire sound
 		}
 	}
 
@@ -54,18 +54,18 @@ public class Player_Script : MonoBehaviour
 		float moveVertical = Input.GetAxis ("Vertical");					//Get if Any Vertical Keys pressed
 		Vector2 movement = new Vector2 (0, moveVertical); 					//Put them in a Vector2 Variable (x,y)
 	//	rigidbody2D.velocity = movement * speed; 							//Add Velocity to the player ship rigidbody
-		rigidbody2D.angularVelocity = -rotate*100;
-		rigidbody2D.AddForce (movement * speed);
+		GetComponent<Rigidbody2D>().angularVelocity = -rotate*100;
+		GetComponent<Rigidbody2D>().AddForce (movement * speed);
 
 		//Lock the position in the screen by putting a boundaries
-		if ((rigidbody2D.position.x >= boundary.xMax) ||
-		(rigidbody2D.position.x <= boundary.xMin) ||
-		(rigidbody2D.position.y >= boundary.yMax) ||
-		(rigidbody2D.position.y <= boundary.yMin)) 
-		rigidbody2D.position = new Vector2 
+		if ((GetComponent<Rigidbody2D>().position.x >= boundary.xMax) ||
+		(GetComponent<Rigidbody2D>().position.x <= boundary.xMin) ||
+		(GetComponent<Rigidbody2D>().position.y >= boundary.yMax) ||
+		(GetComponent<Rigidbody2D>().position.y <= boundary.yMin)) 
+		GetComponent<Rigidbody2D>().position = new Vector2 
 			(
-				Mathf.Clamp (rigidbody2D.position.x, boundary.xMin, boundary.xMax),  //X
-				Mathf.Clamp (rigidbody2D.position.y, boundary.yMin, boundary.yMax)	 //Y
+				Mathf.Clamp (GetComponent<Rigidbody2D>().position.x, boundary.xMin, boundary.xMax),  //X
+				Mathf.Clamp (GetComponent<Rigidbody2D>().position.y, boundary.yMin, boundary.yMax)	 //Y
 			);
 	}
 

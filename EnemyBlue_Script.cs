@@ -25,7 +25,7 @@ public class EnemyBlue_Script : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		rigidbody2D.velocity = -1 * transform.up * speed; //Enemy Ship Movement
+		GetComponent<Rigidbody2D>().velocity = -1 * transform.up * speed; //Enemy Ship Movement
 	}
 
 	//Called when the Trigger entered
