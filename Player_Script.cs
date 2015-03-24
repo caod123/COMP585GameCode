@@ -25,6 +25,7 @@ public class Player_Script : MonoBehaviour
 {
 	//Public Var
 	public float speed; 			//Player Ship Speed
+	public float rotationSpeed;		//Player Ship Rotation Speed
 	public Boundary boundary; 		//make an Object from Class Boundary
 	public GameObject shot;			//Fire Prefab
 	public Transform shotSpawn;		//Where the Fire Spawn
@@ -53,10 +54,19 @@ public class Player_Script : MonoBehaviour
 		float rotate = Input.GetAxis ("Horizontal"); 				//Get if Any Horizontal Keys pressed
 		float moveVertical = Input.GetAxis ("Vertical");					//Get if Any Vertical Keys pressed
 		Vector2 movement = new Vector2 (0, moveVertical); 					//Put them in a Vector2 Variable (x,y)
-	//	rigidbody2D.velocity = movement * speed; 							//Add Velocity to the player ship rigidbody
-		GetComponent<Rigidbody2D>().angularVelocity = -rotate*100;
-		GetComponent<Rigidbody2D>().AddForce (movement * speed);
+//		GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.up) * moveVertical * speed; 							//Add Velocity to the player ship rigidbody
+	//	GetComponent<Rigidbody2D>().angularVelocity = -rotate*100;
+	    Vector3 newRotation = transform.rotation.eulerAngles;
+    	newRotation.z -= rotationSpeed*rotate;
+    	transform.rotation = Quaternion.Euler (newRotation);
 
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+			GetComponent<Rigidbody2D> ().velocity = transform.TransformDirection (Vector3.up) * moveVertical * speed;
+		else {
+			if (GetComponent<Rigidbody2D> ().velocity != Vector2.zero) {
+				GetComponent<Rigidbody2D> ().velocity *= 0.99f;
+			}
+		}
 		//Lock the position in the screen by putting a boundaries
 		if ((GetComponent<Rigidbody2D>().position.x >= boundary.xMax) ||
 		(GetComponent<Rigidbody2D>().position.x <= boundary.xMin) ||
@@ -73,7 +83,7 @@ public class Player_Script : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		//Excute if the object tag was equal to one of these
-		if(other.tag == "Enemy" || other.tag == "Asteroid" || other.tag == "EnemyShot") 
+		if(other.tag == "Enemy" || other.tag == "EnemyShot") 
 		{
 			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
 			SharedValues_Script.gameover = true; 											//Trigger That its a GameOver

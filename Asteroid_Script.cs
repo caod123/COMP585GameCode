@@ -35,10 +35,10 @@ public class Asteroid_Script : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		//Excute if the object tag was equal to one of these
-		if(other.tag == "PlayerLaser")
+		if(other.tag == "PlayerLaser" || other.tag == "Player")
 		{
 			Instantiate (LaserGreenHit, transform.position , transform.rotation); 		//Instantiate LaserGreenHit 
-			Destroy(other.gameObject);													//Destroy the Other (PlayerLaser)
+			if (other.tag != "Player") Destroy(other.gameObject);													//Destroy the Other (PlayerLaser)
 
 			//Check the Health if greater than 0
 			if(health > 0)
