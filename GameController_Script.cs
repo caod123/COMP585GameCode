@@ -96,8 +96,26 @@ public class GameController_Script : MonoBehaviour
 			//Spawn Specific number of Objects in 1 wave
 			for (int i = 0; i < asteroid.Count; i++)
 			{
-				Vector2 spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);		//Random Spawn Position
-				Quaternion spawnRotation = Quaternion.identity;							 								//Default Rotation
+				int edge = Random.Range(0,4);
+
+				Vector2 spawnPosition;
+
+				switch(edge) {
+					case 1:	//right edge
+						spawnPosition = new Vector2 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));		//Random Spawn Position
+						break;
+					case 2: //bottom edge
+						spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y);
+						break;
+					case 3: //left edge
+						spawnPosition = new Vector2 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));
+						break;
+					default: //top edge
+						spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);
+						break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(((Vector2)GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition).normalized).z;							 								//Default Rotation
 				Instantiate (asteroid.asteroidBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
 				yield return new WaitForSeconds (asteroid.SpawnWait); 													//Wait for seconds before spawning the next object
 			}
@@ -116,8 +134,26 @@ public class GameController_Script : MonoBehaviour
 			//Spawn Specific number of Objects in 1 wave
 			for (int i = 0; i < enemyBlue.Count; i++)
 			{
-				Vector2 spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);		//Random Spawn Position
-				Quaternion spawnRotation = Quaternion.identity;															//Default Rotation
+				int edge = Random.Range(0,4);
+				
+				Vector2 spawnPosition;
+				
+				switch(edge) {
+				case 1:	//right edge
+					spawnPosition = new Vector2 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));		//Random Spawn Position
+					break;
+				case 2: //bottom edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y);
+					break;
+				case 3: //left edge
+					spawnPosition = new Vector2 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));
+					break;
+				default: //top edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);
+					break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(((Vector2)GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition).normalized).z;							 								//Default Rotation
 				Instantiate (enemyBlue.enemyBlueObj, spawnPosition, spawnRotation);										//Instantiate Object
 				yield return new WaitForSeconds (enemyBlue.SpawnWait);													//Wait for seconds before spawning the next object
 			}
@@ -136,8 +172,26 @@ public class GameController_Script : MonoBehaviour
 			//Spawn Specific number of Objects in 1 wave
 			for (int i = 0; i < enemyGreen.Count; i++)
 			{
-				Vector2 spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);		//Random Spawn Position
-				Quaternion spawnRotation = Quaternion.identity;															//Default Rotation
+				int edge = Random.Range(0,4);
+				
+				Vector2 spawnPosition;
+				
+				switch(edge) {
+				case 1:	//right edge
+					spawnPosition = new Vector2 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));		//Random Spawn Position
+					break;
+				case 2: //bottom edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y);
+					break;
+				case 3: //left edge
+					spawnPosition = new Vector2 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));
+					break;
+				default: //top edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);
+					break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(((Vector2)GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition).normalized).z;							 								//Default Rotation
 				Instantiate (enemyGreen.enemyGreenObj, spawnPosition, spawnRotation);									//Instantiate Object
 				yield return new WaitForSeconds (enemyGreen.SpawnWait);													//Wait for seconds before spawning the next object
 			}
@@ -156,8 +210,26 @@ public class GameController_Script : MonoBehaviour
 			//Spawn Specific number of Objects in 1 wave
 			for (int i = 0; i < enemyRed.Count; i++)
 			{
-				Vector2 spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);		//Random Spawn Position
-				Quaternion spawnRotation = Quaternion.identity;															//Default Rotation
+				int edge = Random.Range(0,4);
+				
+				Vector2 spawnPosition;
+				
+				switch(edge) {
+				case 1:	//right edge
+					spawnPosition = new Vector2 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));		//Random Spawn Position
+					break;
+				case 2: //bottom edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y);
+					break;
+				case 3: //left edge
+					spawnPosition = new Vector2 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y));
+					break;
+				default: //top edge
+					spawnPosition = new Vector2 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y);
+					break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(((Vector2)GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition).normalized).z;							 								//Default Rotation
 				Instantiate (enemyRed.enemyRedObj, spawnPosition, spawnRotation);										//Instantiate Object
 				yield return new WaitForSeconds (enemyRed.SpawnWait);													//Wait for seconds before spawning the next object
 			}
