@@ -23,6 +23,7 @@ public class Asteroid_Script : MonoBehaviour
 	public GameObject LaserGreenHit; 	//LaserGreenHit Prefab
 	public GameObject Explosion; 		//Explosion Prefab
 	public int ScoreValue; 				//How much the Asteroid give score after explosion
+	public int InventoryValue;			//How much the Inventory is increased after collection
 
 	// Use this for initialization
 	void Start () 
@@ -34,23 +35,13 @@ public class Asteroid_Script : MonoBehaviour
 	//Called when the Trigger entered
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		//Excute if the object tag was equal to one of these
-		if(other.tag == "PlayerLaser" || other.tag == "Player")
+		//Excute if the object tag is equal to player
+		if(other.tag == "Player")
 		{
-			Instantiate (LaserGreenHit, transform.position , transform.rotation); 		//Instantiate LaserGreenHit 
-			if (other.tag != "Player") Destroy(other.gameObject);													//Destroy the Other (PlayerLaser)
-
-			//Check the Health if greater than 0
-			if(health > 0)
-				health--; 																//Decrement Health by 1
-
-			//Check the Health if less or equal 0
-			if(health <= 0)
-			{
 				Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 				SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
+				SharedValues_Script.inventory += 1;							//Increment inventory by InventoryValue
 				Destroy(gameObject); 													//Destroy the Asteroid
-			}
 		}
 	}
 }
