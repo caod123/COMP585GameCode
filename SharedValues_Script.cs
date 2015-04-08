@@ -20,9 +20,11 @@ public class SharedValues_Script : MonoBehaviour
 	public GUIText GameOverText; 			//GUI GameOver
 	public GUIText FinalScoreText; 			//GUI Final Score
 	public GUIText ReplayText; 				//GUI Replay
+	public GUIText inventoryText;			//GUI Inventory
 
 	//Public Shared Var
 	public static int score = 0; 			//Total in-game Score
+	public static int inventory = 0;		//Total in-game Inventory
 	public static bool gameover = false; 	//GameOver Trigger
 
 	// Use this for initialization
@@ -30,12 +32,14 @@ public class SharedValues_Script : MonoBehaviour
 	{
 		gameover = false; 					//return the Gameover trigger to its initial state when the game restart
 		score = 0; 							//return the Score to its initial state when the game restart
+		inventory = 0;						//return the Inventory to its initial state when the game restarts
 	}
 
 	// Fixed Update is called one per specific time
 	void FixedUpdate ()
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
+		inventoryText.text = "Inventory: " + inventory;	//Update the Inventory
 
 		//Excute when the GameOver Trigger is True
 		if (gameover == true)

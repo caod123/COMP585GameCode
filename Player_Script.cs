@@ -40,7 +40,7 @@ public class Player_Script : MonoBehaviour
 	void Update () 
 	{
 		//Excute When the Current Time is bigger than the nextFire time
-		if (Time.time > nextFire) 
+		if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
 		{
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 
