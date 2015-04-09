@@ -5,18 +5,40 @@
 /// Special Thanks to Kenney for the CC0 Graphic Assets: www.kenney.nl
 /// 
 /// This is the GameController Script:
-/// - Control The Waves of the asteroid and the enemies
+/// - Control The Waves of the protons, electrons, neutrons, and the enemies
 /// 
 /// </summary>
 
 using UnityEngine;
 using System.Collections;
 
-//Asteroid Properties
+//Proton Properties
 [System.Serializable]
-public class Asteroid 
+public class Proton 
 {
-	public GameObject asteroidBigObj; 		//Object Prefab
+	public GameObject protonBigObj; 		//Object Prefab
+	public int Count; 						//Number of the object in 1 wave
+	public float SpawnWait; 				//Time to wait before a new spawn
+	public float StartWait; 				//Time to Start spawning
+	public float WaveWait; 					//Time to wait till a new wave
+}
+
+//Electron Properties
+[System.Serializable]
+public class Electron 
+{
+	public GameObject electronBigObj; 		//Object Prefab
+	public int Count; 						//Number of the object in 1 wave
+	public float SpawnWait; 				//Time to wait before a new spawn
+	public float StartWait; 				//Time to Start spawning
+	public float WaveWait; 					//Time to wait till a new wave
+}
+
+//Neutrons Properties
+[System.Serializable]
+public class Neutron 
+{
+	public GameObject neutronBigObj; 		//Object Prefab
 	public int Count; 						//Number of the object in 1 wave
 	public float SpawnWait; 				//Time to wait before a new spawn
 	public float StartWait; 				//Time to Start spawning
@@ -60,7 +82,9 @@ public class EnemyRed
 public class GameController_Script : MonoBehaviour 
 {	
 	//Public Var
-	public Asteroid asteroid;			//make an Object from Class asteroid
+	public Proton proton;			//make an Object from Class proton
+	public Electron electron;		//make an Object from Class electron
+	public Neutron neutron;			//make an Object from Class neutron
 	public EnemyBlue enemyBlue;			//make an Object from Class enemyBlue
 	public EnemyGreen enemyGreen;		//make an Object from Class enemyGreen
 	public EnemyRed enemyRed;			//make an Object from Class enemyRed
@@ -69,7 +93,9 @@ public class GameController_Script : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		StartCoroutine (asteroidSpawnWaves());  	//Start IEnumerator function
+		StartCoroutine (protonSpawnWaves());  	//Start IEnumerator function
+		StartCoroutine (electronSpawnWaves ());	//Start IEnumerator function
+		StartCoroutine (neutronSpawnWaves ());	//Start IEnumerator function
 		StartCoroutine (enemyBlueSpawnWaves());		//Start IEnumerator function
 		StartCoroutine (enemyGreenSpawnWaves());	//Start IEnumerator function
 		StartCoroutine (enemyRedSpawnWaves());		//Start IEnumerator function
@@ -85,16 +111,16 @@ public class GameController_Script : MonoBehaviour
 		}
 	}
 
-	//Asteroid IEnumerator Coroutine
-	IEnumerator asteroidSpawnWaves()
+	//Proton IEnumerator Coroutine
+	IEnumerator protonSpawnWaves()
 	{
-		yield return new WaitForSeconds (asteroid.StartWait); 															//Wait for Seconds before start the wave
+		yield return new WaitForSeconds (proton.StartWait); 															//Wait for Seconds before start the wave
 
 		//Infinite Loop
 		while (true)
 		{
 			//Spawn Specific number of Objects in 1 wave
-			for (int i = 0; i < asteroid.Count; i++)
+			for (int i = 0; i < proton.Count; i++)
 			{
 				int edge = Random.Range(0,4);
 
@@ -117,10 +143,88 @@ public class GameController_Script : MonoBehaviour
 				Quaternion spawnRotation = Quaternion.identity;
 				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
 				Debug.Log (spawnPosition + " " + spawnRotation);
-				Instantiate (asteroid.asteroidBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
-				yield return new WaitForSeconds (asteroid.SpawnWait); 													//Wait for seconds before spawning the next object
+				Instantiate (proton.protonBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
+				yield return new WaitForSeconds (proton.SpawnWait); 													//Wait for seconds before spawning the next object
 			}
-			yield return new WaitForSeconds (asteroid.WaveWait); 														//wait for seconds before the next wave
+			yield return new WaitForSeconds (proton.WaveWait); 														//wait for seconds before the next wave
+		}
+	}
+
+	//Electron IEnumerator Coroutine
+	IEnumerator electronSpawnWaves()
+	{
+		yield return new WaitForSeconds (electron.StartWait); 															//Wait for Seconds before start the wave
+		
+		//Infinite Loop
+		while (true)
+		{
+			//Spawn Specific number of Objects in 1 wave
+			for (int i = 0; i < electron.Count; i++)
+			{
+				int edge = Random.Range(0,4);
+				
+				Vector3 spawnPosition;
+				
+				switch(edge) {
+				case 1:	//right edge
+					spawnPosition = new Vector3 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y), 0f);		//Random Spawn Position
+					break;
+				case 2: //bottom edge
+					spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y, 0f);
+					break;
+				case 3: //left edge
+					spawnPosition = new Vector3 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y), 0f);
+					break;
+				default: //top edge
+					spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, 0f);
+					break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
+				Debug.Log (spawnPosition + " " + spawnRotation);
+				Instantiate (electron.electronBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
+				yield return new WaitForSeconds (electron.SpawnWait); 													//Wait for seconds before spawning the next object
+			}
+			yield return new WaitForSeconds (electron.WaveWait); 														//wait for seconds before the next wave
+		}
+	}
+
+	//Neutron IEnumerator Coroutine
+	IEnumerator neutronSpawnWaves()
+	{
+		yield return new WaitForSeconds (neutron.StartWait); 															//Wait for Seconds before start the wave
+		
+		//Infinite Loop
+		while (true)
+		{
+			//Spawn Specific number of Objects in 1 wave
+			for (int i = 0; i < neutron.Count; i++)
+			{
+				int edge = Random.Range(0,4);
+				
+				Vector3 spawnPosition;
+				
+				switch(edge) {
+				case 1:	//right edge
+					spawnPosition = new Vector3 (spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y), 0f);		//Random Spawn Position
+					break;
+				case 2: //bottom edge
+					spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), -spawnValues.y, 0f);
+					break;
+				case 3: //left edge
+					spawnPosition = new Vector3 (-spawnValues.x, Random.Range (-spawnValues.y, spawnValues.y), 0f);
+					break;
+				default: //top edge
+					spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, 0f);
+					break;
+				}
+				Quaternion spawnRotation = Quaternion.identity;
+				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
+				Debug.Log (spawnPosition + " " + spawnRotation);
+				Instantiate (neutron.neutronBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
+				yield return new WaitForSeconds (neutron.SpawnWait); 													//Wait for seconds before spawning the next object
+			}
+			yield return new WaitForSeconds (neutron.WaveWait); 														//wait for seconds before the next wave
 		}
 	}
 

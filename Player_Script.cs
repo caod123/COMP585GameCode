@@ -39,12 +39,28 @@ public class Player_Script : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+			//Excute When the Current Time is bigger than the nextFire time
+			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
+				nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+				Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
+				GetComponent<AudioSource> ().Play (); 							//Play Fire sound
+				SharedValues_Script.protons -= 1;
+			}
+
 		//Excute When the Current Time is bigger than the nextFire time
-		if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
-		{
+		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
-			Instantiate (shot , shotSpawn.position ,shotSpawn.rotation); 	//Instantiate fire shot 
-			GetComponent<AudioSource>().Play (); 													//Play Fire sound
+			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
+			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
+			SharedValues_Script.electrons -= 1;
+		}
+
+		//Excute When the Current Time is bigger than the nextFire time
+		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
+			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
+			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
+			SharedValues_Script.neutrons -= 1;
 		}
 	}
 
