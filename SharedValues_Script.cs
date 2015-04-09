@@ -43,7 +43,7 @@ public class SharedValues_Script : MonoBehaviour
 	void FixedUpdate ()
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
-		inventoryText.text = "Protons: " + protons + " Electrons: " + electrons + " Neutrons: " + neutrons;	//Update the Protons
+		inventoryText.text = "Protons: " + protons + " Electrons: " + electrons + " Neutrons: " + neutrons;	//Update the inventory
 
 		//Excute when the GameOver Trigger is True
 		if (gameover == true)
