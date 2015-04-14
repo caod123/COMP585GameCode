@@ -107,7 +107,11 @@ public class GameController_Script : MonoBehaviour
 		//Excute when keyboard button R pressed
 		if(Input.GetKey("r"))
 		{
-			Application.LoadLevel(0);		//Load Level 0 (same Level) to make a restart
+			Application.LoadLevel(1);		//Load Level 0 (same Level) to make a restart
+		}
+		if (Input.GetKey ("m") && SharedValues_Script.gameover) 
+		{
+			Application.LoadLevel(0);
 		}
 	}
 
@@ -141,8 +145,9 @@ public class GameController_Script : MonoBehaviour
 						break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
-				Debug.Log (spawnPosition + " " + spawnRotation);
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
 				Instantiate (proton.protonBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
 				yield return new WaitForSeconds (proton.SpawnWait); 													//Wait for seconds before spawning the next object
 			}
@@ -180,8 +185,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
-				Debug.Log (spawnPosition + " " + spawnRotation);
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
 				Instantiate (electron.electronBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
 				yield return new WaitForSeconds (electron.SpawnWait); 													//Wait for seconds before spawning the next object
 			}
@@ -219,9 +225,10 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
-				Debug.Log (spawnPosition + " " + spawnRotation);
-				Instantiate (neutron.neutronBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
+				Instantiate (neutron.neutronBigObj, spawnPosition, spawnRotation); 		//Instantiate Object
 				yield return new WaitForSeconds (neutron.SpawnWait); 													//Wait for seconds before spawning the next object
 			}
 			yield return new WaitForSeconds (neutron.WaveWait); 														//wait for seconds before the next wave
@@ -258,7 +265,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
 				Instantiate (enemyBlue.enemyBlueObj, spawnPosition, spawnRotation);										//Instantiate Object
 				yield return new WaitForSeconds (enemyBlue.SpawnWait);													//Wait for seconds before spawning the next object
 			}
@@ -296,7 +305,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
 				Instantiate (enemyGreen.enemyGreenObj, spawnPosition, spawnRotation);									//Instantiate Object
 				yield return new WaitForSeconds (enemyGreen.SpawnWait);													//Wait for seconds before spawning the next object
 			}
@@ -334,7 +345,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation.z = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward).z;		//Default Rotation
+				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				spawnRotation.x = 0f;
+				spawnRotation.y = 0f;
 				Instantiate (enemyRed.enemyRedObj, spawnPosition, spawnRotation);										//Instantiate Object
 				yield return new WaitForSeconds (enemyRed.SpawnWait);													//Wait for seconds before spawning the next object
 			}

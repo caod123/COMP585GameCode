@@ -21,6 +21,7 @@ public class SharedValues_Script : MonoBehaviour
 	public GUIText FinalScoreText; 			//GUI Final Score
 	public GUIText ReplayText; 				//GUI Replay
 	public GUIText inventoryText;			//GUI Inventory
+	public GUIText MenuText;
 
 	//Public Shared Var
 	public static int score = 0; 			//Total in-game Score
@@ -51,6 +52,7 @@ public class SharedValues_Script : MonoBehaviour
 			GameOverText.text = "GAME OVER"; 			//Show GUI GameOver
 			FinalScoreText.text = "" + score; 			//Show GUI FinalScore
 			ReplayText.text = "PRESS R TO REPLAY"; 		//Show GUI Replay
+			MenuText.text = "PRESS M TO RETURN TO MENU";
 		}
 	}
 }
