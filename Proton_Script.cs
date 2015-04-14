@@ -22,7 +22,7 @@ public class Proton_Script : MonoBehaviour
 	public int health; 					//Proton Health (how much hit can it take)
 	public GameObject LaserGreenHit; 	//LaserGreenHit Prefab
 	public GameObject Explosion; 		//Explosion Prefab
-	public int ScoreValue; 				//How much the Proton give score after explosion
+	public int ScoreValue; 				//How much the Proton give score after explosion .
 
 	// Use this for initialization
 	void Start () 
