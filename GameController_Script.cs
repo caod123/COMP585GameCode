@@ -145,7 +145,9 @@ public class GameController_Script : MonoBehaviour
 						break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (proton.protonBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
@@ -185,7 +187,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation				
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (electron.electronBigObj, spawnPosition, spawnRotation); 									//Instantiate Object
@@ -225,7 +229,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation				
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (neutron.neutronBigObj, spawnPosition, spawnRotation); 		//Instantiate Object
@@ -265,7 +271,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation				
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (enemyBlue.enemyBlueObj, spawnPosition, spawnRotation);										//Instantiate Object
@@ -305,7 +313,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation				
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (enemyGreen.enemyGreenObj, spawnPosition, spawnRotation);									//Instantiate Object
@@ -345,7 +355,9 @@ public class GameController_Script : MonoBehaviour
 					break;
 				}
 				Quaternion spawnRotation = Quaternion.identity;
-				spawnRotation = Quaternion.LookRotation(GameObject.FindGameObjectWithTag("Player").transform.position - spawnPosition, Vector3.forward);		//Default Rotation
+				Vector3 targetPosition = Vector3.zero;
+				if (GameObject.FindGameObjectWithTag("Player") != null) targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+				spawnRotation = Quaternion.LookRotation(targetPosition - spawnPosition, Vector3.forward);		//Default Rotation				
 				spawnRotation.x = 0f;
 				spawnRotation.y = 0f;
 				Instantiate (enemyRed.enemyRedObj, spawnPosition, spawnRotation);										//Instantiate Object
