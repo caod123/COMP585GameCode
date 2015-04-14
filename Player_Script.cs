@@ -40,7 +40,7 @@ public class Player_Script : MonoBehaviour
 	void Update () 
 	{
 			//Excute When the Current Time is bigger than the nextFire time
-			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
+			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Q) && Time.time > nextFire) {
 				nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 				Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 				GetComponent<AudioSource> ().Play (); 							//Play Fire sound
@@ -48,7 +48,7 @@ public class Player_Script : MonoBehaviour
 			}
 
 		//Excute When the Current Time is bigger than the nextFire time
-		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
+		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.W) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
@@ -56,7 +56,7 @@ public class Player_Script : MonoBehaviour
 		}
 
 		//Excute When the Current Time is bigger than the nextFire time
-		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.Space) && Time.time > nextFire) {
+		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.E) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
