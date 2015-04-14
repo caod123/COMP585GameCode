@@ -39,7 +39,7 @@ public class Electron_Script : MonoBehaviour
 		{
 			Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 			SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
-			SharedValues_Script.electrons += 1;										//Increment electron
+			SharedValues_Script.electrons += Random.Range(1, 5);										//Increment electron
 			Destroy(gameObject); 													//Destroy the Electron
 		}
 	}

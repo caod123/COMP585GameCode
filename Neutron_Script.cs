@@ -39,7 +39,7 @@ public class Neutron_Script: MonoBehaviour
 		{
 			Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 			SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
-			SharedValues_Script.neutrons += 1;										//Increment neutron
+			SharedValues_Script.neutrons += Random.Range(1, 5);										//Increment neutron
 			Destroy(gameObject); 													//Destroy the Neutron
 		}
 	}

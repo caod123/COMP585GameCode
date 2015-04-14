@@ -39,7 +39,7 @@ public class Proton_Script : MonoBehaviour
 		{
 				Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 				SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
-				SharedValues_Script.protons += 1;										//Increment proton
+				SharedValues_Script.protons += Random.Range(1, 5);										//Increment proton
 				Destroy(gameObject); 													//Destroy the Proton
 		}
 	}

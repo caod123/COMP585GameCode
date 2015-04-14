@@ -62,6 +62,23 @@ public class Player_Script : MonoBehaviour
 			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
 			SharedValues_Script.neutrons -= 1;
 		}
+
+		if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 8 && SharedValues_Script.neutrons >= 8 && SharedValues_Script.electrons >= 8) {
+				SharedValues_Script.score += 800;
+				SharedValues_Script.protons -= 8;
+				SharedValues_Script.neutrons -= 8;
+				SharedValues_Script.electrons -= 8;
+		} else if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 6 && SharedValues_Script.neutrons >= 6 && SharedValues_Script.electrons >= 6) {
+			SharedValues_Script.score += 600;
+			SharedValues_Script.protons -= 6;
+			SharedValues_Script.neutrons -= 6;
+			SharedValues_Script.electrons -= 6;
+		} else if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 1 && SharedValues_Script.electrons >= 1) {
+				SharedValues_Script.score += 100;
+				SharedValues_Script.protons -= 1;
+				SharedValues_Script.electrons -= 1;
+		}
+
 	}
 
 	// FixedUpdate is called one per specific time
