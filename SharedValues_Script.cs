@@ -60,6 +60,10 @@ public class SharedValues_Script : MonoBehaviour
 		{
 			GameOverText.text = "GAME OVER"; 			//Show GUI GameOver
 			FinalScoreText.text = "" + score; 			//Show GUI FinalScore
+			if (!PlayerPrefs.HasKey ("hiscore"))
+				PlayerPrefs.SetInt ("hiscore", 0);
+			if (score > PlayerPrefs.GetInt ("hiscore"))
+				PlayerPrefs.SetInt ("hiscore", score);
 			ReplayText.text = "PRESS R TO REPLAY"; 		//Show GUI Replay
 			MenuText.text = "PRESS M TO RETURN TO MENU";
 		}

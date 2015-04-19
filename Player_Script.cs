@@ -89,7 +89,6 @@ public class Player_Script : MonoBehaviour
 	{
 		float rotate = Input.GetAxis ("Horizontal"); 				//Get if Any Horizontal Keys pressed
 		float moveVertical = Input.GetAxis ("Vertical");					//Get if Any Vertical Keys pressed
-		Vector2 movement = new Vector2 (0, moveVertical); 					//Put them in a Vector2 Variable (x,y)
 //		GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector3.up) * moveVertical * speed; 							//Add Velocity to the player ship rigidbody
 	//	GetComponent<Rigidbody2D>().angularVelocity = -rotate*100;
 	    Vector3 newRotation = transform.rotation.eulerAngles;
