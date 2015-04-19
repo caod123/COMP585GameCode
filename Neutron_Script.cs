@@ -45,6 +45,9 @@ public class Neutron_Script: MonoBehaviour
 			Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 			SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
 			SharedValues_Script.neutrons += ammount;										//Increment neutron
+			SharedValues_Script.cluster = ammount;									//Set cluster to amount of neutrons
+			SharedValues_Script.particle = "neutrons";								//Set particle to neutrons
+			SharedValues_Script.clusterTime = 50.0F;								//Set the cluster time
 			Destroy(gameObject); 													//Destroy the Neutron
 		}
 	}

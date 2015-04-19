@@ -45,6 +45,9 @@ public class Electron_Script : MonoBehaviour
 			Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 			SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
 			SharedValues_Script.electrons += ammount;										//Increment electron
+			SharedValues_Script.cluster = ammount;									//Set cluster to amount of electrons
+			SharedValues_Script.particle = "electrons";								//Set particle to electrons
+			SharedValues_Script.clusterTime = 50.0F;								//Set the cluster time
 			Destroy(gameObject); 													//Destroy the Electron
 		}
 	}

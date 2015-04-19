@@ -45,6 +45,9 @@ public class Proton_Script : MonoBehaviour
 				Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 				SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
 				SharedValues_Script.protons += ammount;										//Increment proton
+				SharedValues_Script.cluster = ammount;									//Set cluster to amount of protons
+				SharedValues_Script.particle = "protons";								//Set particle to protons
+				SharedValues_Script.clusterTime = 50.0F;								//Set the cluster time
 				Destroy(gameObject); 													//Destroy the Proton
 		}
 	}

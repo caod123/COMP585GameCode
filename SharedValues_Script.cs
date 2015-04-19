@@ -24,42 +24,89 @@ public class SharedValues_Script : MonoBehaviour
 	public GUIText MenuText;				//GUI Menu
 	public GUIText elementText;				//GUI Element
 	public GUIText livesText;				//GUI Lives
+	public GUIText extraLifeText;			//GUI Extra Life
 
 	//Public Shared Var
 	public static int score = 0; 			//Total in-game Score
+	public static int previousScore = 0; 			//Total in-game Previous Score
 	public static int protons = 0;		//Total in-game Protons
 	public static int electrons = 0;		//Total in-game Electrons
 	public static int neutrons = 0;		//Total in-game Neutrons
 	public static bool gameover = false; 	//GameOver Trigger
 	public static string element = "";	//Element that was synthesized
-	public static int lives = 3;
-	public static float elementTime = 0.0F;
+	public static int lives = 3;			//Total in-game Lives
+	public static float elementTime = 0.0F;	//Time to show last synthesized element
+	public static float extraLifeTime = 0.0F;	//Time to show the extra life given
+	public static bool extraLifeGiven = false;  //ExtraLife Trigger
+	public static int cluster = 0;			//Total in-game Cluster amount
+	public static float clusterTime = 0.0F;	//Time to show the cluster amount
+	public static string particle = "";		//Particle that was just collected
 
 	// Use this for initialization
 	void Start () 
 	{
 		gameover = false; 					//return the Gameover trigger to its initial state when the game restart
 		score = 0; 							//return the Score to its initial state when the game restart
+		previousScore = 0; 							//return the Previous Score to its initial state when the game restart
 		protons = 0;						//return the Protons to its initial state when the game restarts
 		electrons = 0;						//return the Electrons to its initial state when the game restarts
 		neutrons = 0;						//return the Neutrons to its initial state when the game restarts
 		element = "";						//return the Element to its initial state when the game restarts
 		lives = 3;						//return the Lives to its initial state when the game restarts
 		elementTime = 0.0F;						//return the Element Time to its initial state when the game restarts
+		extraLifeTime = 0.0F;						//return the Extra Life Time to its initial state when the game restarts
+		extraLifeGiven = false; 					//return the Extra Life trigger to its initial state when the game restart
+		cluster = 0;						//return the Cluster to its initial state when the game restarts
+		clusterTime = 0.0F;						//return the Cluster Time to its initial state when the game restarts
+		particle = "";						//return the Particle to its initial state when the game restarts
 	}
 
 	// Fixed Update is called one per specific time
 	void FixedUpdate ()
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
-		inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
-		livesText.text = "Lives: " + lives;
+		livesText.text = "Lives: " + lives; //Update the lives
 
+		//Update the element Text
 		if (elementTime > 0) {
 			elementText.text = element;
 			elementTime -= 1;
 		} else {
 			elementText.text = "";
+		}
+
+		//Update the inventory and the cluster collected amount
+		if (particle == "protons" && clusterTime > 0) {
+			inventoryText.text = "[Q] Protons: " + protons + " + " + cluster + " " + particle + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
+			clusterTime -= 1;
+		} else if (particle == "electrons" && clusterTime > 0) {
+			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + " + " + cluster + " " + particle + "\n[E] Neutrons: " + neutrons;	//Update the inventory
+			clusterTime -= 1;
+		} else if (particle == "neutrons" && clusterTime > 0) {
+			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons + " + " + cluster + " " + particle;	//Update the inventory
+			clusterTime -= 1;
+		} else {
+			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
+		}
+
+		//Check to see if extra life should be given
+		if (score >= previousScore + 1000) {
+			previousScore = score;
+			extraLifeGiven = true;
+		}
+
+		//Give an extra life
+		if (extraLifeGiven) {
+			lives += 1;
+			extraLifeGiven = false;
+			extraLifeTime = 100.0F;
+		}
+
+		if (extraLifeTime > 0) {
+			extraLifeText.text = "You earned an extra life";
+			extraLifeTime -= 1;
+		} else {
+			extraLifeText.text = "";
 		}
 
 		//Excute when the GameOver Trigger is True
