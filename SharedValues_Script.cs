@@ -33,6 +33,7 @@ public class SharedValues_Script : MonoBehaviour
 	public static bool gameover = false; 	//GameOver Trigger
 	public static string element = "";	//Element that was synthesized
 	public static int lives = 3;
+	public static float elementTime = 0.0F;
 
 	// Use this for initialization
 	void Start () 
@@ -44,6 +45,7 @@ public class SharedValues_Script : MonoBehaviour
 		neutrons = 0;						//return the Neutrons to its initial state when the game restarts
 		element = "";						//return the Element to its initial state when the game restarts
 		lives = 3;						//return the Lives to its initial state when the game restarts
+		elementTime = 0.0F;						//return the Element Time to its initial state when the game restarts
 	}
 
 	// Fixed Update is called one per specific time
@@ -53,7 +55,12 @@ public class SharedValues_Script : MonoBehaviour
 		inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
 		livesText.text = "Lives: " + lives;
 
-		//elementText.text = element;
+		if (elementTime > 0) {
+			elementText.text = element;
+			elementTime -= 1;
+		} else {
+			elementText.text = "";
+		}
 
 		//Excute when the GameOver Trigger is True
 		if (gameover == true)
