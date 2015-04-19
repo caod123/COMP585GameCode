@@ -14,9 +14,21 @@ using System.Collections;
 
 public class explosions_script : MonoBehaviour 
 {
+	private ParticleSystem ps;
 	// Use this for initialization
 	void Start () 
 	{
 		GetComponent<AudioSource>().Play(); //Play Explosion Sound
+		ps = GetComponent<ParticleSystem>();
+	}
+	public void Update() 
+	{
+		if(ps)
+		{
+			if(!ps.IsAlive())
+			{
+				Destroy(gameObject);
+			}
+		}
 	}
 }

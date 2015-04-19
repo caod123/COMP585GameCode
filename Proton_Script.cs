@@ -23,12 +23,17 @@ public class Proton_Script : MonoBehaviour
 	public GameObject LaserGreenHit; 	//LaserGreenHit Prefab
 	public GameObject Explosion; 		//Explosion Prefab
 	public int ScoreValue; 				//How much the Proton give score after explosion .
+	private int ammount;
+	private static float scale = 0.03f;
 
 	// Use this for initialization
 	void Start () 
 	{
+		speed = Random.Range (1, 3);
+		ammount = Random.Range(1, 5);
 		GetComponent<Rigidbody2D>().angularVelocity = Random.Range(minTumble, maxTumble); 		//Angular movement based on random speed values
 		GetComponent<Rigidbody2D>().velocity = -1 * transform.up * speed; 						//Negative Velocity to move down towards the player ship
+		transform.localScale += new Vector3((float)ammount*scale, (float)ammount*scale, (float)ammount*scale);
 	}
 
 	//Called when the Trigger entered
@@ -39,7 +44,7 @@ public class Proton_Script : MonoBehaviour
 		{
 				Instantiate (Explosion, transform.position , transform.rotation); 		//Instantiate Explosion
 				SharedValues_Script.score +=ScoreValue; 								//Increment score by ScoreValue
-				SharedValues_Script.protons += Random.Range(1, 5);										//Increment proton
+				SharedValues_Script.protons += ammount;										//Increment proton
 				Destroy(gameObject); 													//Destroy the Proton
 		}
 	}
