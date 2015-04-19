@@ -27,8 +27,8 @@ public class Player_Script : MonoBehaviour
 	public float speed; 			//Player Ship Speed
 	public float rotationSpeed;		//Player Ship Rotation Speed
 	public Boundary boundary; 		//make an Object from Class Boundary
-	public GameObject shot;			//Fire Prefab
 	public Transform shotSpawn;		//Where the Fire Spawn
+	private GameObject shot;
 	public float fireRate = 0.01F;	//Fire Rate between Shots
 	public GameObject Explosion;	//Explosion Prefab
 
@@ -42,6 +42,7 @@ public class Player_Script : MonoBehaviour
 			//Excute When the Current Time is bigger than the nextFire time
 			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Q) && Time.time > nextFire) {
 				nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+				shot = Resources.Load("Prefabs/PlayerShip-Laser-Red", typeof(GameObject)) as GameObject;
 				Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 				GetComponent<AudioSource> ().Play (); 							//Play Fire sound
 				SharedValues_Script.protons -= 1;
@@ -50,6 +51,7 @@ public class Player_Script : MonoBehaviour
 		//Excute When the Current Time is bigger than the nextFire time
 		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.W) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+			shot = Resources.Load("Prefabs/PlayerShip-Laser-Green", typeof(GameObject)) as GameObject;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
 			SharedValues_Script.electrons -= 1;
@@ -58,6 +60,7 @@ public class Player_Script : MonoBehaviour
 		//Excute When the Current Time is bigger than the nextFire time
 		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.E) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+			shot = Resources.Load("Prefabs/PlayerShip-Laser-Blue", typeof(GameObject)) as GameObject;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
 			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
 			SharedValues_Script.neutrons -= 1;
