@@ -71,15 +71,21 @@ public class Player_Script : MonoBehaviour
 				SharedValues_Script.protons -= 8;
 				SharedValues_Script.neutrons -= 8;
 				SharedValues_Script.electrons -= 8;
+				SharedValues_Script.element = "Oxygen!";
+				SharedValues_Script.elementTime = 100.0F;
 		} else if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 6 && SharedValues_Script.neutrons >= 6 && SharedValues_Script.electrons >= 6) {
 			SharedValues_Script.score += 600;
 			SharedValues_Script.protons -= 6;
 			SharedValues_Script.neutrons -= 6;
 			SharedValues_Script.electrons -= 6;
-		} else if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 1 && SharedValues_Script.electrons >= 1) {
+			SharedValues_Script.element = "Carbon!";
+			SharedValues_Script.elementTime = 100.0F;
+		} else if (Input.GetKeyUp (KeyCode.Space) && SharedValues_Script.protons >= 1 && SharedValues_Script.neutrons >= 1) {
 				SharedValues_Script.score += 100;
 				SharedValues_Script.protons -= 1;
-				SharedValues_Script.electrons -= 1;
+				SharedValues_Script.neutrons -= 1;
+			SharedValues_Script.element = "Hydrogen!";
+			SharedValues_Script.elementTime = 100.0F;
 		}
 
 	}
@@ -117,8 +123,16 @@ public class Player_Script : MonoBehaviour
 	//Called when the Trigger entered
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		//Execute if the object tag was equal to one of these
+		if ((other.tag == "Enemy" || other.tag == "EnemyShot") && SharedValues_Script.lives > 0) 
+		{
+			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
+			SharedValues_Script.lives -= 1;
+			Destroy(other.gameObject); 															//Destroy other object
+		}
+
 		//Excute if the object tag was equal to one of these
-		if(other.tag == "Enemy" || other.tag == "EnemyShot") 
+		if((other.tag == "Enemy" || other.tag == "EnemyShot") && SharedValues_Script.lives == 0) 
 		{
 			Instantiate (Explosion, transform.position , transform.rotation); 				//Instantiate Explosion
 			SharedValues_Script.gameover = true; 											//Trigger That its a GameOver
