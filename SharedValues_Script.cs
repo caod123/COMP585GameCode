@@ -25,6 +25,7 @@ public class SharedValues_Script : MonoBehaviour
 	public GUIText elementText;				//GUI Element
 	public GUIText livesText;				//GUI Lives
 	public GUIText extraLifeText;			//GUI Extra Life
+	public GUIText synthesizableText;		//GUI Synthesizable Element
 
 	//Public Shared Var
 	public static int score = 0; 			//Total in-game Score
@@ -66,6 +67,7 @@ public class SharedValues_Script : MonoBehaviour
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
 		livesText.text = "Lives: " + lives; //Update the lives
+		synthesizableText.text = "[Space]: " + Element.getSynthesizableElement (protons);
 
 		//Update the element Text
 		if (elementTime > 0) {
