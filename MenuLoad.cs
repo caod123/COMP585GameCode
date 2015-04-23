@@ -18,7 +18,7 @@ public class MenuLoad : MonoBehaviour {
 	void Update() {
 		if(Input.GetKey("space"))
 		{
-			Application.LoadLevel(1);		//Load Level 0 (same Level) to make a restart
+			Application.LoadLevel(2);		//Load Level 0 (same Level) to make a restart
 		}
 	}
 }
