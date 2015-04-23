@@ -11,6 +11,7 @@
 /// </summary>
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SharedValues_Script : MonoBehaviour 
@@ -66,7 +67,7 @@ public class SharedValues_Script : MonoBehaviour
 	void FixedUpdate ()
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
-		livesText.text = "Lives: " + lives; //Update the lives
+		livesText.text = "x " + lives; //Update the lives
 		synthesizableText.text = "[Space]: " + Element.getSynthesizableElement (protons);
 
 		//Update the element Text
