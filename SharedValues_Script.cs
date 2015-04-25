@@ -80,16 +80,15 @@ public class SharedValues_Script : MonoBehaviour
 
 		//Update the inventory and the cluster collected amount
 		if (particle == "protons" && clusterTime > 0) {
-			inventoryText.text = "[Q] Protons: " + protons + " + " + cluster + " " + particle + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
-			clusterTime -= 1;
+			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n   " +  "+" + cluster + " P+";;
 		} else if (particle == "electrons" && clusterTime > 0) {
-			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + " + " + cluster + " " + particle + "\n[E] Neutrons: " + neutrons;	//Update the inventory
+			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n                      " + "+" + cluster + " e-";	//Update the inventory
 			clusterTime -= 1;
 		} else if (particle == "neutrons" && clusterTime > 0) {
-			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons + " + " + cluster + " " + particle;	//Update the inventory
+			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n            " +  "+" + cluster + " N";	//Update the inventory
 			clusterTime -= 1;
 		} else {
-			inventoryText.text = "[Q] Protons: " + protons + "\n[W] Electrons: " + electrons + "\n[E] Neutrons: " + neutrons;	//Update the inventory
+			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons;	//Update the inventory
 		}
 
 		//Check to see if extra life should be given

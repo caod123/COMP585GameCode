@@ -88,7 +88,7 @@ public class Element : MonoBehaviour
 		if (protonCount > 118) {
 			return "Ununoctium";
 		} else if (protonCount == 0) {
-			return "Cannot Synthesize";
+			return "None";
 		} else {
 			return elements[protonCount].eName;
 		}

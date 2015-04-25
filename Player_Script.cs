@@ -49,7 +49,7 @@ public class Player_Script : MonoBehaviour
 			}
 
 		//Excute When the Current Time is bigger than the nextFire time
-		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.W) && Time.time > nextFire) {
+		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.E) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			shot = Resources.Load("Prefabs/PlayerShip-Laser-Green", typeof(GameObject)) as GameObject;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
@@ -58,7 +58,7 @@ public class Player_Script : MonoBehaviour
 		}
 
 		//Excute When the Current Time is bigger than the nextFire time
-		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.E) && Time.time > nextFire) {
+		if ((SharedValues_Script.neutrons > 0) && Input.GetKeyUp (KeyCode.W) && Time.time > nextFire) {
 			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
 			shot = Resources.Load("Prefabs/PlayerShip-Laser-Blue", typeof(GameObject)) as GameObject;
 			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
