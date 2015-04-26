@@ -21,7 +21,9 @@ public class SharedValues_Script : MonoBehaviour
 	public GUIText GameOverText; 			//GUI GameOver
 	public GUIText FinalScoreText; 			//GUI Final Score
 	public GUIText ReplayText; 				//GUI Replay
-	public GUIText inventoryText;			//GUI Inventory
+	public GUIText protonText;			//GUI Protons
+	public GUIText electronText;			//GUI Electrons
+	public GUIText neutronText;			//GUI Neutrons
 	public GUIText MenuText;				//GUI Menu
 	public GUIText elementText;				//GUI Element
 	public GUIText livesText;				//GUI Lives
@@ -80,15 +82,18 @@ public class SharedValues_Script : MonoBehaviour
 
 		//Update the inventory and the cluster collected amount
 		if (particle == "protons" && clusterTime > 0) {
-			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n   " +  "+" + cluster + " P+";;
+			protonText.text = protons + "\n+" + cluster + " P+"; //Update the protons
+			clusterTime -= 1;
 		} else if (particle == "electrons" && clusterTime > 0) {
-			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n                      " + "+" + cluster + " e-";	//Update the inventory
+			electronText.text = electrons + "\n+" + cluster + " e-";	//Update the electrons
 			clusterTime -= 1;
 		} else if (particle == "neutrons" && clusterTime > 0) {
-			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons + "\n            " +  "+" + cluster + " N";	//Update the inventory
+			neutronText.text = neutrons + "\n+" + cluster + " N";	//Update the neutrons
 			clusterTime -= 1;
 		} else {
-			inventoryText.text = "    " + protons + "         " + neutrons + "         " + electrons;	//Update the inventory
+			protonText.text = "" + protons;
+			electronText.text = "" + electrons;
+			neutronText.text = "" + neutrons;
 		}
 
 		//Check to see if extra life should be given
