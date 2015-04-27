@@ -24,6 +24,8 @@ public class Boundary
 public class Player_Script : MonoBehaviour 
 {
 	//Public Var
+	bool paused = false;
+	public GUIElement pauseImage;
 	public float speed; 			//Player Ship Speed
 	public float rotationSpeed;		//Player Ship Rotation Speed
 	public Boundary boundary; 		//make an Object from Class Boundary
@@ -39,6 +41,18 @@ public class Player_Script : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Input.GetKeyUp("p") && paused == false)
+		{
+			paused = true;
+			Time.timeScale = 0;
+			pauseImage.enabled = true;
+		}
+		if (Input.GetKeyUp("p") && paused == true)
+		{
+			paused = false;
+			Time.timeScale = 1;
+			pauseImage.enabled = false;
+		}
 			//Excute When the Current Time is bigger than the nextFire time
 			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Q) && Time.time > nextFire) {
 				nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
