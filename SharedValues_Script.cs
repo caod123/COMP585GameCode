@@ -70,7 +70,7 @@ public class SharedValues_Script : MonoBehaviour
 	{
 		scoreText.text = "Score: " + score; 			//Update the GUI Score
 		livesText.text = "x " + lives; //Update the lives
-		synthesizableText.text = "[Space]: " + Element.getSynthesizableElement (protons);
+		synthesizableText.text = "[Space]: " + Element.getSynthesizableElement (protons, neutrons, electrons);
 
 		//Update the element Text
 		if (elementTime > 0) {

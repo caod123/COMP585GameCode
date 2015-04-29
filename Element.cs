@@ -19,7 +19,7 @@ public class Element : MonoBehaviour
 		this.pointValue = pointValue;
 	}
 
-	public static Element[] elements = new Element[] { new Element (0, 0, 0, "", 0), new Element (1, 1, 0, "Hydrogen", 100), 
+	public static Element[] elements = new Element[] { new Element (0, 0, 0, "", 0), new Element (1, 1, 1, "Hydrogen", 100), 
 		new Element (2, 2, 2, "Helium", 200), new Element (3, 4, 3, "Lithium", 300), 
 		new Element (4, 5, 4, "Berylium", 400), new Element (5, 6, 5, "Boron", 500),
 		new Element (6, 6, 6, "Carbon", 600), new Element (7, 7, 7, "Nitrogen", 700),
@@ -83,82 +83,51 @@ public class Element : MonoBehaviour
 	};
 
 	// Check to see what can currently be synthesized
-	public static string getSynthesizableElement (int protonCount)
+	public static string getSynthesizableElement (int protonCount, int neutronCount, int electronCount)
 	{
-		if (protonCount > 118) {
+		int idx;
+		if (protonCount >= 118 && neutronCount >= 176 && electronCount >= 118) {
 			return "Ununoctium";
-		} else if (protonCount == 0) {
+		} else if (protonCount == 0 || neutronCount == 0 || electronCount == 0) {
 			return "None";
 		} else {
-			return elements[protonCount].eName;
+			if (protonCount <= electronCount) {
+				idx = protonCount;
+			} else {
+				idx = electronCount;
+			}
+
+			while (elements[idx].neutron > neutronCount) {
+				idx = idx - 1;
+			}
+			return elements[idx].eName;
 		}
 	}
 
 	public static void synthesizeElement(int protonCount, int neutronCount, int electronCount)
 	{
-		int neutronDiff = neutronCount;
-		int electronDiff = electronCount;
-		int nScore = 0;
-		int eScore = 0;
-		int finalScore = 0;
-
-		if (protonCount > 118) {
-			protonCount = 118;
-
-			if (neutronDiff < getNeutron(protonCount)) 
-			{
-				SharedValues_Script.neutrons -= neutronDiff;
-			} else {
-				SharedValues_Script.neutrons -= elements [118].neutron;
-			}
-
-			if (electronDiff < getElectron(protonCount))
-			{
-				SharedValues_Script.electrons -= electronDiff;
-			} else {
-				SharedValues_Script.electrons -= elements [118].electron;
-			}
-
-			nScore = neutronCount - getNeutron(protonCount);
-			eScore = electronCount - getElectron(protonCount);
-
-			Mathf.Abs(nScore);
-			Mathf.Abs(eScore);
-
-			finalScore = (nScore * 5) + (eScore * 5);
-
-			SharedValues_Script.protons -= elements [118].id;
-			SharedValues_Script.score += elements[118].pointValue - finalScore;
-			SharedValues_Script.element = elements [118].eName;
-			SharedValues_Script.elementTime = 100.0F;
+		int idx;
+		if (protonCount == 0 || neutronCount == 0 || electronCount == 0) {
 		} else {
-			if (neutronDiff < getNeutron(protonCount)) 
-			{
-				SharedValues_Script.neutrons -= neutronDiff;
+			if (protonCount <= electronCount) {
+				idx = protonCount;
 			} else {
-				SharedValues_Script.neutrons -= elements [protonCount].neutron;
+				idx = electronCount;
 			}
 			
-			if (electronDiff < getElectron(protonCount))
-			{
-				SharedValues_Script.electrons -= electronDiff;
-			} else {
-				SharedValues_Script.electrons -= elements [protonCount].electron;
+			while (elements[idx].neutron > neutronCount) {
+				idx = idx - 1;
 			}
 
-			nScore = neutronCount - getNeutron(protonCount);
-			eScore = electronCount - getElectron(protonCount);
-			
-			Mathf.Abs(nScore);
-			Mathf.Abs(eScore);
-			
-			finalScore = (nScore * 5) + (eScore * 5);
-
-			SharedValues_Script.protons -= elements [protonCount].id;
-			SharedValues_Script.score += elements [protonCount].pointValue - finalScore;
+			SharedValues_Script.protons -= elements [idx].id;
+			SharedValues_Script.neutrons -= elements [idx].neutron;
+			SharedValues_Script.electrons -= elements [idx].electron;
+			SharedValues_Script.score += elements [protonCount].pointValue;
 			SharedValues_Script.element = elements [protonCount].eName;
 			SharedValues_Script.elementTime = 100.0F;
 		}
+		
+
 	}
 
 	// Get the id/protons associated with the element
