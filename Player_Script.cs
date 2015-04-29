@@ -24,8 +24,8 @@ public class Boundary
 public class Player_Script : MonoBehaviour 
 {
 	//Public Var
-	bool paused = false;
-	public GUIElement pauseImage;
+	bool paused;
+	public GUIText pauseImage;
 	public float speed; 			//Player Ship Speed
 	public float rotationSpeed;		//Player Ship Rotation Speed
 	public Boundary boundary; 		//make an Object from Class Boundary
@@ -37,30 +37,32 @@ public class Player_Script : MonoBehaviour
 	//Private Var
 	private float nextFire = 0.0F;	//First fire & Next fire Time
 
+	void Start () {
+		pauseImage.enabled = false;
+		paused = false;
+	}
+
+	void TogglePause() {
+			paused = !paused;
+			pauseImage.enabled = !pauseImage.enabled;
+			Time.timeScale = 1 - Time.timeScale;
+	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyUp("p") && paused == false)
+		if (Input.GetKeyUp("escape"))
 		{
-			paused = true;
-			Time.timeScale = 0;
-			pauseImage.enabled = true;
+			TogglePause ();
 		}
-		if (Input.GetKeyUp("p") && paused == true)
-		{
-			paused = false;
-			Time.timeScale = 1;
-			pauseImage.enabled = false;
+		//Excute When the Current Time is bigger than the nextFire time
+		if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Q) && Time.time > nextFire) {
+			nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
+			shot = Resources.Load("Prefabs/PlayerShip-Laser-Red", typeof(GameObject)) as GameObject;
+			Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
+			GetComponent<AudioSource> ().Play (); 							//Play Fire sound
+			SharedValues_Script.protons -= 1;
 		}
-			//Excute When the Current Time is bigger than the nextFire time
-			if ((SharedValues_Script.protons > 0) && Input.GetKeyUp (KeyCode.Q) && Time.time > nextFire) {
-				nextFire = Time.time + fireRate; 								//Increment nextFire time with the current system time + fireRate
-				shot = Resources.Load("Prefabs/PlayerShip-Laser-Red", typeof(GameObject)) as GameObject;
-				Instantiate (shot, shotSpawn.position, shotSpawn.rotation); 	//Instantiate fire shot 
-				GetComponent<AudioSource> ().Play (); 							//Play Fire sound
-				SharedValues_Script.protons -= 1;
-			}
 
 		//Excute When the Current Time is bigger than the nextFire time
 		if ((SharedValues_Script.electrons > 0) && Input.GetKeyUp (KeyCode.E) && Time.time > nextFire) {

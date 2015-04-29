@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Element : MonoBehaviour
+public class Element 
 {
 
 	private int id;
