@@ -105,7 +105,7 @@ public class GameController_Script : MonoBehaviour
 	void Update () 
 	{
 		//Excute when keyboard button R pressed
-		if(Input.GetKey("r"))
+		if(Input.GetKey("r") && Time.timeScale == 1)
 		{
 			Application.LoadLevel(1);		//Load Level 0 (same Level) to make a restart
 		}
